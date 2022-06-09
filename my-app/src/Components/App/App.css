@@ -1,0 +1,12 @@
+.header {
+  display: block;
+  padding: 1rem;
+  background-color: #004578;
+  color: #FFF;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.pivot {
+  margin-left: 8px;
+}
