@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Carrossel.css";
 import { ICarrosselProps } from "./props";
-import { FontIcon, initializeIcons } from "@fluentui/react";
+import { FontIcon, initializeIcons, Link, Text } from "@fluentui/react";
 
 export const Carrossel = (props: ICarrosselProps) => {
   initializeIcons();
-  const [current, setCurrent] = React.useState(0);
+  const [current, setCurrent] = useState(0);
   const length = props.items.length;
 
   const nextSlide = () => {
@@ -33,6 +33,10 @@ export const Carrossel = (props: ICarrosselProps) => {
           <div className={i === current ? "slide active" : "slide"}>
             {i === current && (
               <>
+                <div className="info">
+                  <Text className="title">{slide.title}</Text>
+                  <Link className="link" href={slide.link} target="_blank">Saiba mais...</Link>
+                </div>
                 <img className="image" src={slide.img} alt="Slide" />
               </>
             )}

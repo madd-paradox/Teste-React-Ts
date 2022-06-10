@@ -19,7 +19,12 @@ export class App extends React.Component<
     };
   }
 
-  setItems = (items: Item[]) => this.setState({ items });
+  setItems = (items: Item[]) => {
+    items.sort((a, b) => {
+      return a.order - b.order;
+    });
+    this.setState({ items });
+  };
   changePage = (pageKey: string) => this.setState({ pageKey });
 
   render() {
