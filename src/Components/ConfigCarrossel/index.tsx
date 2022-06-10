@@ -254,6 +254,7 @@ export class ConfigCarrossel extends React.Component<
             name="title"
             value={title}
             onChange={this.handleChangeText}
+            maxLength={255}
             styles={textFieldStyles}
           />
           <TextField
