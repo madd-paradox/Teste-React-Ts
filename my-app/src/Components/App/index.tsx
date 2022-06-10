@@ -1,33 +1,11 @@
 import React from "react";
 import "office-ui-fabric-react/dist/css/fabric.css";
 import "./App.css";
-import { Pivot, PivotItem, Text } from "@fluentui/react";
+import { Item } from "../../props";
+import { ItemsFill } from "../../data";
+import { Carrossel } from "../Carrossel";
 import { ConfigCarrossel } from "../ConfigCarrossel";
-import { Item } from "../ConfigCarrossel/props";
-
-const itemsFill = [
-  {
-    key: 0,
-    title: "Teste 2",
-    img: "/img",
-    link: "#link",
-    order: 2,
-  },
-  {
-    key: 1,
-    title: "Teste 1",
-    img: "/img",
-    link: "#link",
-    order: 1,
-  },
-  {
-    key: 2,
-    title: "Teste 3",
-    img: "/img",
-    link: "#link",
-    order: 3,
-  },
-];
+import { Pivot, PivotItem, Text } from "@fluentui/react";
 
 export class App extends React.Component<
   {},
@@ -36,7 +14,7 @@ export class App extends React.Component<
   constructor(props: any) {
     super(props);
     this.state = {
-      items: itemsFill,
+      items: ItemsFill,
       pageKey: "home",
     };
   }
@@ -53,21 +31,11 @@ export class App extends React.Component<
         <Text className="header">Teste Técnico React.</Text>
         {/* Content */}
         <Pivot
-          className="pivot"
           selectedKey={this.state.pageKey}
           onLinkClick={(e) => this.changePage(e?.props.itemKey || "")}
         >
           <PivotItem headerText="Carrossel" alwaysRender={true} itemKey="home">
-            {items.map((item) => {
-              return (
-                <>
-                  <Text key={item.key}>
-                    {item.title} - {item.img} - {item.link} - {item.order}
-                  </Text>
-                  <br />
-                </>
-              );
-            })}
+            <Carrossel items={items} />
           </PivotItem>
           <PivotItem
             headerText="Configurações"

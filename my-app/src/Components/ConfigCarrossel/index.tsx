@@ -1,6 +1,7 @@
 import React from "react";
-import { IConfigCarrosselProps, Item } from "./props";
+import { IConfigCarrosselProps } from "./props";
 import { IConfigCarrosselState } from "./state";
+import { Item } from "../../props";
 import {
   CommandBarButton,
   DefaultButton,
@@ -60,7 +61,6 @@ const columns: IColumn[] = [
   },
 ];
 const itemClear: Item = {
-  key: 0,
   title: "",
   img: "",
   link: "",
@@ -126,14 +126,11 @@ export class ConfigCarrossel extends React.Component<
 
     if (this._selection.getSelectedCount() === 0) {
       // adicionando um item
-      let item: Item = {
-        ...this.state.formItem,
-        key: this.props.items.length,
-      };
-      listItems.push(item);
+      listItems.push(this.state.formItem);
     } else {
       // editando um item
-      listItems[this.state.formItem.key] = this.state.formItem;
+      let index = listItems.indexOf(this._selection.getSelection()[0] as Item);
+      listItems[index] = this.state.formItem;
     }
 
     this.props.setItems(listItems);
@@ -145,7 +142,8 @@ export class ConfigCarrossel extends React.Component<
     let listItems = this.props.items;
     if (this._selection.getSelectedCount() === 0) {
       // deletar um item
-      listItems.splice(this.state.formItem.key, 1);
+      let index = listItems.indexOf(this.state.formItem);
+      listItems.splice(index, 1);
     } else {
       // deletar varios items
       let itemsSelected = this._selection.getSelection() as Item[];

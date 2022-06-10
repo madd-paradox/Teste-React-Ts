@@ -1,4 +1,4 @@
-import { Item } from "./props";
+import { Item } from "../../props";
 
 export interface IConfigCarrosselState {
     formItem: Item;
